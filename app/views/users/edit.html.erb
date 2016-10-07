@@ -6,21 +6,54 @@
 <br>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div class="container">
-    <h1> Profile </h1>
-    <script>
-    $.getJSON('/mlb.json', function(data) {
-  console.log(data);
-});
-</script>
-  </body>
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="container">
+         <h1> Profile </h1>
+         <script>
+            $(document).ready(function(){
+
+              var onSuccess = function(data) {
+                var events = data["sports"][0]["leagues"][0]["events"];
+                if (events && events.length) {
+                  events.forEach(function(event, index, arr) {
+                    name1 = arr[index]["competitions"][0]["competitors"][0]["team"]["nickname"];
+                    nickName1 = arr[index]["competitions"][0]["competitors"][0]["team"]["name"];
+                    score1 = arr[index]["competitions"][0]["competitors"][0]["score"];
+                    var wholeName1 = name1 + " " + nickName1 + " " + score1
+
+
+                    name2  = arr[index]["competitions"][0]["competitors"][1]["team"]["nickname"];
+                    nickName2  = arr[index]["competitions"][0]["competitors"][1]["team"]["name"];
+                    score2  = arr[index]["competitions"][0]["competitors"][1]["score"];
+                    var wholeName2 = name2 + " " +nickName2 + " " + score2
+                    console.log(wholeName1 + " vs " + wholeName2);
+                  });
+                }
+              }
+            /*
+                for(var i = 0; i<events.length; i++){
+                  name1 = events[i]["competitions"][0]["competitors"][0]["team"]["nickname"];
+                  nickName1 = events[i]["competitions"][0]["competitors"][0]["team"]["name"];
+                  score1 = events[i]["competitions"][0]["competitors"][0]["score"];
+                  var wholeName1 = name1 + " " + nickName1 + " " + score1
+
+                  name2  = events[i]["competitions"][0]["competitors"][1]["team"]["nickname"];
+                  nickName2  = events[i]["competitions"][0]["competitors"][1]["team"]["name"];
+                  score2  = events[i]["competitions"][0]["competitors"][1]["score"];
+                  var wholeName2 = name2 + " " +nickName2 + " " + score2
+                  }
+              };*/
+
+              $.getJSON('/mlb.json', onSuccess);
+
+            });
+         </script>
+
+
+   </body>
 </html>
-
-
-
 </div>
