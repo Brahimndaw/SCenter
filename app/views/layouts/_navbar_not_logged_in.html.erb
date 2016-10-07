@@ -1,0 +1,13 @@
+<nav class="navbar navbar-top navbar-light bg-faded">
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+    &#9776;
+  </button>
+  <%= link_to image_tag("articles_controller", width: '150', height: '100'), home_path, class: "navbar-brand" %>
+  <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+  </div>
+  <ul class="nav nav-inline pull-md-right">
+    <li class="nav-link">
+      <%= link_to "Login", new_user_session_path %>
+    </li>
+  <ul>
+</nav>
